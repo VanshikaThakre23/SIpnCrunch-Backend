@@ -1,0 +1,59 @@
+# === Node Modules ===
+node_modules/
+**/node_modules/
+
+# === Build Artifacts ===
+dist/
+build/
+
+# === Logs & Debugging ===
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# === Environment Files (Sensitive Info) ===
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# === System / IDE Files ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# === Coverage & Reports ===
+coverage/
+*.lcov
+
+# === Cache & Temp ===
+.cache/
+.tmp/
+.parcel-cache/
+.next/
+out/
+.sass-cache/
+*.tgz
+
+# === Backend Specific ===
+/backend/uploads/
+/backend/.env
+/backend/.DS_Store
+
+# === Frontend Specific ===
+/frontend/.env
+/frontend/.DS_Store
+/frontend/node_modules/
+frontend/dist/
+
+# === Misc ===
+*.bak
+*.old
+*.orig
+*.log
