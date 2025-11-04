@@ -9,7 +9,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://sipncrunchofficial.netlify.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> console.log("MongoDB Connected"))
@@ -17,5 +23,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use("/api/auth",authRoutes);
 app.use("/api/cart",cartRoutes)
+
+app.get("/", (req, res) => {
+  res.send("✅ Backend working and reachable!");
+});
+
 
 app.listen(5000, () => console.log("Server running on port 5000"));
