@@ -1,42 +1,27 @@
 import express from "express";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import cors from "cors";
-
 import authRoutes from "./routes/authRoutes.js";
-import cartRoutes from "./routes/cartRoutes.js";
 
 dotenv.config();
 const app = express();
 
-// --- Basic Middleware ---
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      "https://sipncrunchofficial.netlify.app",
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-    ],
+    origin: ["http://localhost:5173", "https://sipncrunchofficial.netlify.app"],
     credentials: true,
   })
 );
 
-// --- Test Route ---
-app.get("/", (req, res) => {
-  res.send("✅ Backend is up and running!");
-});
-
-// --- MongoDB Connection ---
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB connection failed:", err));
 
-// --- API Routes ---
 app.use("/api/auth", authRoutes);
-app.use("/api/cart", cartRoutes);
 
-// --- Start Server ---
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(process.env.PORT, () =>
+  console.log(`🚀 Server running on port ${process.env.PORT}`)
+);
