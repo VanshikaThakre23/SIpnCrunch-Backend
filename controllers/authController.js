@@ -33,6 +33,8 @@ export const login = async (req, res) => {
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
-    res.status(500).json({ message: "Error in login", error });
-  }
+  console.error("Registration Error:", error);
+  res.status(500).json({ message: "Error in registration", error: error.message });
+}
+
 };
