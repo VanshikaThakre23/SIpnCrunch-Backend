@@ -10,10 +10,15 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://sipncrunchofficial.netlify.app"],
+    origin: [
+      "https://sipncrunchofficial.netlify.app", // your frontend URL
+      "http://localhost:5173", // for local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
+
 
 mongoose
   .connect(process.env.MONGO_URI)
