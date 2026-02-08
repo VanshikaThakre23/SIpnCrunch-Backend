@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js";
 
 
 dotenv.config();
@@ -18,9 +17,11 @@ mongoose
   .catch((err) => console.error("❌ MongoDB connection failed:", err));
 
 app.use("/api/auth", authRoutes);
-app.use("/api/admin", adminRoutes);
 
 
-app.listen(process.env.PORT, () =>
-  console.log(`🚀 Server running on port ${process.env.PORT}`)
-);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
